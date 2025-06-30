@@ -34,7 +34,23 @@ class FireflyApp:
         finally:
             self.scan_button.config(state=tk.NORMAL)
 
+    def _scan(self):
+        try:
+            result = scan_system()
+            if result:
+                self.status.config(text="Scan complete.", fg="green")
+                messagebox.showinfo("Scan Results", f"Scan finished. Log saved to:\n{result}")
+            else:
+                raise Exception("Failed to write scan log.")
+        except Exception as e:
+            self.status.config(text="Error during scan.", fg="red")
+            messagebox.showerror("Error", str(e))
+        finally:
+            self.scan_button.config(state=tk.NORMAL)
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = FireflyApp(root)
     root.mainloop()
+
