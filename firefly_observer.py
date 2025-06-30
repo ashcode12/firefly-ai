@@ -5,3 +5,6 @@ if __name__ == "__main__":
     fire_speak()
     results = scan_all_drives()
     print(f"\n✅ Scan complete. {len(results)} files found.")
+
+from firefly_brain import read_log_and_classify
+read_log_and_classify()
